@@ -220,16 +220,20 @@
 </section>
 
 <!-- PAGE 2: Join Blockchain Auto-Trading Bot (Sign Up form) -->
-<section class="page" id="page2">
+<section class="page" id="page2" style="display:none;">
   <button class="nav-back" id="backToPage1FromSignUp">&lt; Back</button>
   <h2>Join Blockchain Auto-Trading Bot</h2>
+  
   <form id="signUpForm">
     <label for="signUpEmail">Email</label>
     <input type="email" id="signUpEmail" required placeholder="Enter your email" autocomplete="email" />
+    
     <label for="signUpPhone">Phone Number</label>
     <input type="tel" id="signUpPhone" required placeholder="Enter your phone number" autocomplete="tel" />
+    
     <label for="signUpPassword">Password</label>
     <input type="password" id="signUpPassword" required placeholder="Create a password" autocomplete="new-password" />
+    
     <button type="submit" id="signUpJoinBtn">Join</button>
   </form>
 </section>
@@ -1681,5 +1685,31 @@ document.getElementById('logoutBtn')?.addEventListener('click', () => {
     }
   });
 </script>
+
+  <script>
+  document.getElementById('signUpForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // prevent actual form submission
+    
+    // Simple validation check (browser will handle required, but you can add more if needed)
+    const email = document.getElementById('signUpEmail').value.trim();
+    const phone = document.getElementById('signUpPhone').value.trim();
+    const password = document.getElementById('signUpPassword').value.trim();
+
+    if (email && phone && password) {
+      // Hide the sign-up page
+      document.getElementById('page2').style.display = 'none';
+      // Show the main dashboard page (page4)
+      document.getElementById('page4').style.display = 'block';
+    } else {
+      alert('Please fill in all required fields.');
+    }
+  });
+
+  // Back button to return to page1
+  document.getElementById('backToPage1FromSignUp').addEventListener('click', function() {
+    document.getElementById('page2').style.display = 'none';
+    document.getElementById('page1').style.display = 'block';
+  });
+  </script>
 </body>
 </html>
